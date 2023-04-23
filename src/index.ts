@@ -6,7 +6,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
 import { exec } from 'child_process';
 
-const model = 'base';
+const model = 'base.en';
 const chunkCount = 4;
 const outputPath = join(__dirname, 'outputs');
 let MaxSize = 120;
