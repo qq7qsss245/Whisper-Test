@@ -5,7 +5,7 @@ import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
 
-const model = 'tiny';
+const model = 'large';
 const chunkCount = 3;
 const outputPath = join(__dirname, 'outputs');
 if (!existsSync(outputPath)) {
@@ -29,6 +29,7 @@ const single = async  (word: string) => {
 const runTest = async () => {
  const now = Date.now();
  let chunks = chunk(words, chunkCount)
+ console.log(chunks.length);
  for (let chunk of chunks) {
   await Promise.all(chunk.map(single));
  }
