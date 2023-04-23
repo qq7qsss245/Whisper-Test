@@ -1,9 +1,11 @@
-import { exec, mkdir, cd } from 'shelljs';
+import { mkdir, cd } from 'shelljs';
 import moment from 'moment';
 import words from './words.json';
 import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
+import { exec } from 'child_process';
+
 
 const model = 'base';
 const chunkCount = 3;
@@ -18,7 +20,9 @@ const single = async  (word: string) => {
  const start = Date.now();
  const filePath = join(__dirname, 'words', `${word}.wav` );
  cd(cppPath);
- exec(`NV_GPU=1 ./main -m models/ggml-base.en.bin ${filePath} -of ${outputPath} --output-txt -l en`);
+ await new Promise(resolve => {
+  exec(`NV_GPU=1 ./main -m models/ggml-base.en.bin ${filePath} -of ${outputPath} --output-txt -l en`, resolve);
+ });
  const end = Date.now();
  const s = moment.duration(end - start, "milliseconds").asSeconds();
  console.log(`${word} took ${s} seconds`);
