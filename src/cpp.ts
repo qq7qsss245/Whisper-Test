@@ -20,7 +20,7 @@ const single = async  (word: string) => {
  const start = Date.now();
  const filePath = join(__dirname, 'words', `${word}.wav` );
  await new Promise(resolve => {
-  exec(`NV_GPU=1 ~/temp/whisper.cpp/main -m models/ggml-base.en.bin ${filePath} -of ${outputPath} --output-txt -l en`, resolve);
+  exec(`NV_GPU=1 ~/temp/whisper.cpp/main -m ~/temp/whisper.cpp/models/ggml-base.en.bin ${filePath} -of ${outputPath} --output-txt -l en`, resolve);
  });
  const end = Date.now();
  const s = moment.duration(end - start, "milliseconds").asSeconds();
