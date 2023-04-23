@@ -17,6 +17,7 @@ const runTest = async () => {
   // console.log(word);
  }
  const seconds = moment.duration(Date.now() - now, "milliseconds").asSeconds();
+ console.log('test took ' + seconds + 'seconds');
 };
 
 runTest();
