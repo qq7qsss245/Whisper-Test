@@ -13,7 +13,8 @@ if (!existsSync(outputPath)) {
 const runTest = async () => {
  const now = Date.now();
  for (let word of words) {
-  exec(`whisper ${word}.mp3 --model ${model} --output_dir ${outputPath} --output_format txt`);
+  const filePath = join(__dirname, 'words', `${word}.mp3` );
+  exec(`whisper ${filePath} --model ${model} --output_dir ${outputPath} --output_format txt`);
   // console.log(word);
  }
  const seconds = moment.duration(Date.now() - now, "milliseconds").asSeconds();
