@@ -16,7 +16,7 @@ let times:any[] = [];
 const single = async  (word: string) => {
  const start = Date.now();
  const filePath = join(__dirname, 'words', `${word}.mp3` );
- exec(`NV_GPU=1 whisper ${filePath} --model ${model} --output_dir ${outputPath} --output_format txt --language en`);
+ exec(`NV_GPU=1 whisper ${filePath} --model ${model} --output_dir ${outputPath} --output_format txt --language en --device cuda`);
  const end = Date.now();
  const s = moment.duration(end - start, "milliseconds").asSeconds();
  console.log(`${word} took ${s} seconds`);
