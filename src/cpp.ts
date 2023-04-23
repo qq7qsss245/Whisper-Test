@@ -16,7 +16,7 @@ let times:any[] = [];
 
 const single = async  (word: string) => {
  const start = Date.now();
- const filePath = join(__dirname, 'words', `${word}.mp3` );
+ const filePath = join(__dirname, 'words', `${word}.wav` );
  cd(cppPath);
  exec(`NV_GPU=1 ./main -m models/ggml-base.en.bin ${filePath} -of ${outputPath} --output-txt -l en`);
  const end = Date.now();
