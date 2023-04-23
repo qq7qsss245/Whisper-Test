@@ -5,7 +5,7 @@ import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
 
-const model = 'large';
+const model = 'base';
 const chunkCount = 3;
 const outputPath = join(__dirname, 'outputs');
 if (!existsSync(outputPath)) {
