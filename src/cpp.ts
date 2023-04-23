@@ -12,6 +12,7 @@ const MaxSize = 120;
 const model = 'base';
 const chunkCount = 4;
 const cppPath = join(`~/temp/whisper.cpp`);
+// const cppPath = `/Volumes/External/workspace/whisper.cpp`;
 const outputPath = join(__dirname, 'outputs');
 if (!existsSync(outputPath)) {
  mkdirSync(outputPath);
@@ -23,7 +24,7 @@ const single = async  (word: string) => {
  const filePath = join(__dirname, 'words-wav', `${word}.wav` );
  const outputFilePath = join(outputPath, `${word}`)
  await new Promise(resolve => {
-  exec(`NV_GPU=1 ~/temp/whisper.cpp/main -m ~/temp/whisper.cpp/models/ggml-base.en.bin ${filePath} -of ${outputFilePath} --output-txt -l en`, resolve);
+  exec(`${cppPath}/main -m ${cppPath}/models/ggml-base.en.bin ${filePath} -of ${outputFilePath} --output-txt -l en`, resolve);
  });
  const end = Date.now();
  const s = moment.duration(end - start, "milliseconds").asSeconds();
