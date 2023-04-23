@@ -1,10 +1,10 @@
-import { mkdir, cd } from 'shelljs';
+import { exec, mkdir, cd } from 'shelljs';
 import moment from 'moment';
 import words from './words.json';
 import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
-import { exec } from 'child_process';
+// import { exec } from 'child_process';
 
 
 const model = 'base';
