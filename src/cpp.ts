@@ -7,7 +7,7 @@ import { chunk } from 'lodash';
 import { exec } from 'child_process';
 
 
-const MaxSize = 1200
+const MaxSize = 1200;
 
 const model = 'base';
 const chunkCount = 4;
@@ -40,6 +40,9 @@ const runTest = async () => {
  console.log(chunks.length);
  for (let chunk of chunks) {
   await Promise.all(chunk.map(single));
+  if (times.length > MaxSize) {
+   break;
+  }
  }
  const seconds = moment.duration(Date.now() - now, "milliseconds").asSeconds();
  console.log('test took ' + seconds + 'seconds');

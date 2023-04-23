@@ -9,6 +9,7 @@ import { exec } from 'child_process';
 const model = 'base';
 const chunkCount = 3;
 const outputPath = join(__dirname, 'outputs');
+let MaxSize = 1200;
 if (!existsSync(outputPath)) {
  mkdirSync(outputPath);
 }
@@ -35,6 +36,9 @@ const runTest = async () => {
  console.log(chunks.length);
  for (let chunk of chunks) {
   await Promise.all(chunk.map(single));
+  if (times.length > MaxSize) {
+   break;
+  }
  }
  const seconds = moment.duration(Date.now() - now, "milliseconds").asSeconds();
  console.log('test took ' + seconds + 'seconds');
