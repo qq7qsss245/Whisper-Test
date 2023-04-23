@@ -9,7 +9,7 @@ import { exec } from 'child_process';
 const model = 'base';
 const chunkCount = 3;
 const outputPath = join(__dirname, 'outputs');
-let MaxSize = 1200;
+let MaxSize = 120;
 if (!existsSync(outputPath)) {
  mkdirSync(outputPath);
 }

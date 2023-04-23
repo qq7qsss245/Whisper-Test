@@ -7,7 +7,7 @@ import { chunk } from 'lodash';
 import { exec } from 'child_process';
 
 
-const MaxSize = 1200;
+const MaxSize = 120;
 
 const model = 'base';
 const chunkCount = 4;
