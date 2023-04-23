@@ -18,7 +18,7 @@ const single = async  (word: string) => {
  const start = Date.now();
  const filePath = join(__dirname, 'words', `${word}.mp3` );
  cd(cppPath);
- exec(`NV_GPU=1 ./main -m models/ggml-base.en.bin ${filePath} --output_dir ${outputPath} --output_format txt --language en --device cuda`);
+ exec(`NV_GPU=1 ./main -m models/ggml-base.en.bin ${filePath} -of ${outputPath} --output-txt -l en`);
  const end = Date.now();
  const s = moment.duration(end - start, "milliseconds").asSeconds();
  console.log(`${word} took ${s} seconds`);
