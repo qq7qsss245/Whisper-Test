@@ -7,7 +7,7 @@ import { chunk } from 'lodash';
 
 const model = 'base';
 const chunkCount = 3;
-const cppPath = join(__dirname, '../', 'whisper.cpp');
+const cppPath = join(`~/temp/whisper.cpp`);
 const outputPath = join(__dirname, 'outputs');
 if (!existsSync(outputPath)) {
  mkdirSync(outputPath);
