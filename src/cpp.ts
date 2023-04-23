@@ -1,14 +1,16 @@
-import { exec, mkdir, cd } from 'shelljs';
+import { mkdir, cd } from 'shelljs';
 import moment from 'moment';
 import words from './words.json';
 import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
-// import { exec } from 'child_process';
+import { exec } from 'child_process';
 
+
+const MaxSize = 1200
 
 const model = 'base';
-const chunkCount = 3;
+const chunkCount = 4;
 const cppPath = join(`~/temp/whisper.cpp`);
 const outputPath = join(__dirname, 'outputs');
 if (!existsSync(outputPath)) {
