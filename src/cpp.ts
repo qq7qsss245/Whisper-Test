@@ -15,7 +15,7 @@ const chunkCount = 1;
 const cppPath = join(`~/temp/whisper.cpp`);
 // const cppPath = `/Volumes/External/workspace/whisper.cpp`;
 const audioFolder = 'pods';
-const outputPath = join(__dirname, 'outputs');
+const outputPath = join(__dirname, 'outputs-cpp');
 if (!existsSync(outputPath)) {
  mkdirSync(outputPath);
 }
