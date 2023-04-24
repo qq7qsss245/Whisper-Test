@@ -12,7 +12,7 @@ const MaxSize = 120;
 
 const model = 'base.en';
 const chunkCount = 1;
-const processorCount = 3;
+const processorCount = 1;
 const threadsCount = 12;
 const cppPath = join(`~/temp/whisper.cpp`);
 // const cppPath = `/Volumes/External/workspace/whisper.cpp`;
