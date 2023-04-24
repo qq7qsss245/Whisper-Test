@@ -1,5 +1,6 @@
 import { mkdir, cd } from 'shelljs';
 import moment from 'moment';
+import pods from './podlist.json';
 import words from './words.json';
 import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
@@ -9,10 +10,11 @@ import { exec } from 'child_process';
 
 const MaxSize = 120;
 
-const model = 'base';
-const chunkCount = 4;
+const model = 'base.en';
+const chunkCount = 1;
 const cppPath = join(`~/temp/whisper.cpp`);
 // const cppPath = `/Volumes/External/workspace/whisper.cpp`;
+const audioFolder = 'pods';
 const outputPath = join(__dirname, 'outputs');
 if (!existsSync(outputPath)) {
  mkdirSync(outputPath);
@@ -21,7 +23,7 @@ let times:any[] = [];
 
 const single = async  (word: string) => {
  const start = Date.now();
- const filePath = join(__dirname, 'words-wav', `${word}.wav` );
+ const filePath = join(__dirname, audioFolder, `${word}.wav` );
  const outputFilePath = join(outputPath, `${word}`)
  await new Promise(resolve => {
   exec(`${cppPath}/main -m ${cppPath}/models/ggml-base.en.bin ${filePath} -of ${outputFilePath} --output-txt -l en`, resolve);
@@ -37,8 +39,7 @@ const single = async  (word: string) => {
 
 const runTest = async () => {
  const now = Date.now();
- let chunks = chunk(words, chunkCount)
- console.log(chunks.length);
+ let chunks = chunk(pods.data.list.map(e => e.id), chunkCount)
  for (let chunk of chunks) {
   await Promise.all(chunk.map(single));
   if (times.length > MaxSize) {
