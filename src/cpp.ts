@@ -48,7 +48,7 @@ const runTest = async () => {
  }
  const seconds = moment.duration(Date.now() - now, "milliseconds").asSeconds();
  console.log('test took ' + seconds + 'seconds');
- writeFileSync(join(__dirname, 'duration.json'), JSON.stringify(times));
+ writeFileSync(join(__dirname, 'duration_cpp.json'), JSON.stringify(times));
 };
 
 runTest();
