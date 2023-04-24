@@ -12,8 +12,8 @@ const MaxSize = 120;
 
 const model = 'base.en';
 const chunkCount = 1;
-const processorCount = 1;
-const threadsCount = 24;
+const processorCount = 6;
+const threadsCount = 4;
 const cppPath = join(`~/temp/whisper.cpp`);
 // const cppPath = `/Volumes/External/workspace/whisper.cpp`;
 const audioFolder = 'pods';
