@@ -1,11 +1,11 @@
-import { mkdir, cd } from 'shelljs';
+import { mkdir, cd, exec } from 'shelljs';
 import moment from 'moment';
 import words from './words.json';
 import pods from './podlist.json';
 import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
-import { exec } from 'child_process';
+// import { exec } from 'child_process';
 
 const model = 'base.en';
 const chunkCount = 1;
