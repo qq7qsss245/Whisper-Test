@@ -6,12 +6,14 @@ import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
 // import { exec } from 'child_process';
-
+// 转wav for f in *.mp3; do ffmpeg -i "$f" -acodec pcm_s16le -ac 1 -ar 16000 "${f%.mp3}.wav"; done
 
 const MaxSize = 120;
 
 const model = 'base.en';
 const chunkCount = 1;
+const processorCount = 3;
+const threadsCount = 12;
 const cppPath = join(`~/temp/whisper.cpp`);
 // const cppPath = `/Volumes/External/workspace/whisper.cpp`;
 const audioFolder = 'pods';
@@ -26,7 +28,7 @@ const single = async  (word: string) => {
  const filePath = join(__dirname, audioFolder, `${word}.wav` );
  const outputFilePath = join(outputPath, `${word}`)
  await new Promise(resolve => {
-  exec(`${cppPath}/main -m ${cppPath}/models/ggml-base.en.bin ${filePath} -of ${outputFilePath} --output-txt -l en`, resolve);
+  exec(`${cppPath}/main -m ${cppPath}/models/ggml-base.en.bin ${filePath} -of ${outputFilePath} --output-txt -l en -p ${processorCount} -t ${threadsCount}`, resolve);
  });
  const end = Date.now();
  const s = moment.duration(end - start, "milliseconds").asSeconds();
