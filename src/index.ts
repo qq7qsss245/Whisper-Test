@@ -21,8 +21,10 @@ let times:any[] = [];
 const single = async  (word: string) => {
  const start = Date.now();
  const filePath = join(__dirname, audioFolder, `${word}.wav` );
+ const command = `CUDA_VISIBLE_DEVICES=1 whisper ${filePath} --model ${model} --output_dir ${outputPath} --output_format txt --language en --device cuda`;
+ console.log('executing:', command);
  await new Promise(resolve => {
-  exec(`CUDA_VISIBLE_DEVICES=1 whisper ${filePath} --model ${model} --output_dir ${outputPath} --output_format txt --language en --device cuda`, resolve);
+  exec(command, resolve);
  });
  const end = Date.now();
  const s = moment.duration(end - start, "milliseconds").asSeconds();
