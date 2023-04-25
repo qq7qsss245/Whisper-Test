@@ -7,11 +7,11 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
 // import { exec } from 'child_process';
 
-const model = 'base.en';
+const model = 'tiny.en';
 const chunkCount = 1;
 const outputPath = join(__dirname, 'outputs');
 const audioFolder = 'pods';
-let MaxSize = 120;
+let MaxSize = 1;
 if (!existsSync(outputPath)) {
  mkdirSync(outputPath);
 }
@@ -21,7 +21,7 @@ let times:any[] = [];
 const single = async  (word: string) => {
  const start = Date.now();
  const filePath = join(__dirname, audioFolder, `${word}.wav` );
- const command = `CUDA_VISIBLE_DEVICES=1 whisper ${filePath} --model ${model} --output_dir ${outputPath} --output_format txt --language en --device cuda`;
+ const command = `CUDA_VISIBLE_DEVICES=1 whisper ${filePath} --model ${model} --output_dir ${outputPath} --output_format txt --language en`;
  console.log('executing:', command);
  await new Promise(resolve => {
   exec(command, resolve);

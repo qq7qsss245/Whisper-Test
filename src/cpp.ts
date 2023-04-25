@@ -8,7 +8,7 @@ import { chunk } from 'lodash';
 // import { exec } from 'child_process';
 // 转wav for f in *.mp3; do ffmpeg -i "$f" -acodec pcm_s16le -ac 1 -ar 16000 "${f%.mp3}.wav"; done
 
-const MaxSize = 120;
+const MaxSize = 1;
 
 const model = 'base.en';
 const chunkCount = 1;
