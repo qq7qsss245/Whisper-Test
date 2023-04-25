@@ -10,7 +10,7 @@ import { chunk } from 'lodash';
 
 const MaxSize = 1;
 
-const model = 'base.en';
+const model = 'tiny.en';
 const chunkCount = 1;
 const processorCount = 6;
 const threadsCount = 4;
@@ -28,7 +28,7 @@ const single = async  (word: string) => {
  const filePath = join(__dirname, audioFolder, `${word}.wav` );
  const outputFilePath = join(outputPath, `${word}`)
  await new Promise(resolve => {
-  exec(`${cppPath}/main -m ${cppPath}/models/ggml-base.en.bin ${filePath} -of ${outputFilePath} --output-txt -l en -p ${processorCount} -t ${threadsCount}`, resolve);
+  exec(`${cppPath}/main -m ${cppPath}/models/ggml-${model}.bin ${filePath} -of ${outputFilePath} --output-txt -l en -p ${processorCount} -t ${threadsCount}`, resolve);
  });
  const end = Date.now();
  const s = moment.duration(end - start, "milliseconds").asSeconds();
