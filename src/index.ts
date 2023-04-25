@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { chunk } from 'lodash';
 // import { exec } from 'child_process';
 
-const model = 'medium.en';
+const model = 'large';
 const chunkCount = 1;
 const outputPath = join(__dirname, 'outputs');
 const audioFolder = 'pods';
